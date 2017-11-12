@@ -519,7 +519,7 @@ cnmemStatus_t Manager::allocateBlockUnsafe(Block *&curr, Block *&prev, std::size
         CNMEM_CHECK_CUDA(cudaMalloc(&data, size));
         CNMEM_DEBUG_INFO(">> returned address=0x%016lx\n", (size_t) data);
         fstream file3("cudaMalloc.text", ios::in|ios::out|ios::app);
-        file3<<"data, in size_t, in MB, and size: "<<data<<' '<<(size_t)data<<(size_t)data/1024.0/1024.0<<' '<<size<<endl;
+        file3<<"data, in size_t, in MB, and size in MB:    "<<data<<' '<<(size_t)data<<' '<<(size_t)data/1024.0/1024.0<<' '<<size/1024.0/1024.0<<endl;
     }
 
     // If it failed, there's an unexpected issue.
