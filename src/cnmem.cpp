@@ -31,14 +31,6 @@
 #include <vector>
 #include <cuda_runtime_api.h>
 
-//added for print cudaMalloc info, not all needed.
-#include <iostream>
-#include <fstream>
-#include <chrono>
-#include <stdint.h>
-using namespace std;
-
-
 #if !defined(WIN32) && defined(_MSC_VER)
 #define WIN32
 #endif
@@ -519,8 +511,6 @@ cnmemStatus_t Manager::allocateBlockUnsafe(Block *&curr, Block *&prev, std::size
         CNMEM_DEBUG_INFO("cudaMalloc(%lu)\n", size);
         CNMEM_CHECK_CUDA(cudaMalloc(&data, size));
         CNMEM_DEBUG_INFO(">> returned address=0x%016lx\n", (size_t) data);
-        fstream file3("cudaMalloc.text", ios::in|ios::out|ios::app);
-        file3<<"data, in size_t, in MB, and size: "<<data<<' '<<(size_t)data<<(size_t)data/1024.0/1024.0<<' '<<size<<endl;
     }
 
     // If it failed, there's an unexpected issue.
